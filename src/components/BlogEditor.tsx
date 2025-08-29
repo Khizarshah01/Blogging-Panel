@@ -3,6 +3,7 @@ import { Bold, Italic, Heading3, Code2, Eye, Edit3, List, ListOrdered, Quote, Li
 import ImageUploader from './ImageUploader';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks'; // 👈 added
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/atom-one-dark.css';
 
@@ -106,7 +107,7 @@ const BlogEditor: React.FC<BlogContentProps> = ({ value, onChange, disabled }) =
       ) : (
         <div className="prose prose-invert max-w-none bg-zinc-950 border border-zinc-800 rounded-xl p-6 text-white">
           <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
+            remarkPlugins={[remarkGfm, remarkBreaks]} // 👈 added remark-breaks
             rehypePlugins={[rehypeHighlight]}
             components={{
               h1: ({ node, ...props }) => (
